@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "sjis.h"
+#include "utf8.h"
 
 struct charstat {
 	int chr, cnt;
