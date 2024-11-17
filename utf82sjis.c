@@ -6,7 +6,7 @@
 int main(int argc, char **argv) {
 	FILE *in = stdin, *out = stdout;
 	if(argc > 1) in = fopen(argv[1], "rb");
-	if(argc > 2) out = fopen(argv[2], "rb");
+	if(argc > 2) out = fopen(argv[2], "wb");
 
 	int b;
 	while((b = utf8_fgetc(in)) != EOF) {
