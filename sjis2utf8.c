@@ -10,13 +10,9 @@ int main(int argc, char **argv) {
 
 	int last_byte = 0;
 	int b = 0;
-	while((b = fgetc(in)) != EOF) {
-		if(last_byte == 0 && SJIS_FIRST_CHAR(b)) {
-			last_byte = b;
-		} else {
-			utf8_fputc(sjis_char_to_unicode((last_byte << 8) | b), out);
-			last_byte = 0;
-		}
+	while((b = sjis_fgetc(in)) != EOF) {
+		if(b == -2) fprintf(stderr, "Invalid char found at %d\n", ftell(in));
+		utf8_fputc(sjis_char_to_unicode(b), out);
 	}
 
 	return 0;
