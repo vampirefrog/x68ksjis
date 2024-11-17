@@ -1,2 +1,5 @@
 *.exe
 *.o
+sjis2utf8
+utf82sjis
+sjisstat
