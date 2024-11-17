@@ -12,6 +12,8 @@ int utf8_to_sjis(uint8_t *utf8_data, int utf8_len, uint8_t *sjis_data, int sjis_
 uint32_t sjis_char_to_unicode(uint16_t sjis);
 uint16_t unicode_char_to_sjis(uint32_t unicode);
 
+int sjis_fputc(int sjis, FILE *f);
+int sjis_fgetc(FILE *f);
 int sjis_print_utf8_escaped(uint8_t *sjis_data, int sjis_len);
 int sjis_write_utf8(FILE *f, uint8_t *sjis_data, int sjis_len);
 int sjis_print_utf8(uint8_t *sjis_data, int sjis_len);

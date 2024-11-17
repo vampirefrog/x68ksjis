@@ -62,6 +62,25 @@ int sjis_write_utf8(FILE *f, uint8_t *sjis_data, int sjis_len) {
 	return j;
 }
 
+int sjis_fputc(int sjis, FILE *f) {
+	uint8_t b = (sjis >> 8) & 0xff;
+	if(SJIS_FIRST_CHAR(b))
+		fputc(b, f); // TODO: error check
+	return fputc(sjis & 0xff, f);
+}
+
+int sjis_fgetc(FILE *f) {
+	int b = fgetc(f);
+	if(b == EOF) return EOF;
+	if(!SJIS_FIRST_CHAR(b))
+		return b;
+
+	int b2 = fgetc(f);
+	if(b2 == EOF) return EOF;
+	return b << 8 | b2;
+}
+
+
 uint16_t jis_to_sjis(uint16_t val) {
 	uint8_t j2 = val & 0xff;
 	uint8_t j1 = val >> 8;
